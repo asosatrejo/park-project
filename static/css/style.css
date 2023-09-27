@@ -1,0 +1,24 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #addd8e;
+  }
+  
+  #map,
+  body,
+  html {
+    height: 100%;
+  }
+
+  h1{
+    color: #004529;
+    text-align: center;
+    font-size: 40px;
+  }
+  #subtitle{
+    color: #07803d;
+    text-align: center;
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+  }
