@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #addd8e;
+    background-color: #d1f8b6;
   }
   
   #map,
@@ -13,12 +13,67 @@ body {
   h1{
     color: #004529;
     text-align: center;
-    font-size: 40px;
+    font-size: 60px;
   }
+  h2 {
+    color: #004529;
+    text-align: center;
+    font-size: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  h3 {
+    color: #004529;
+    text-align: left;
+    font-size: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  h4 {
+    text-align: left;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  p {
+    text-align: left;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+    
+  
   #subtitle{
     color: #07803d;
     text-align: center;
     font-size: 25px;
     margin: 0;
     padding: 0;
+  }
+
+  /* Create three equal columns that float next to each other */
+.column {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #F1F1F1;
+    text-align: right;
+    padding: 20px;
   }
