@@ -3,7 +3,6 @@ CREATE TABLE parks(
     park_name VARCHAR(255)NOT NULL,
     address VARCHAR(255)NOT NULL,
     city VARCHAR(255)NOT NULL,
-    state VARCHAR(2)NOT NULL,
     zip_code VARCHAR(10)NOT NULL,
     district VARCHAR(255)NOT NULL,
     phone VARCHAR(20)NOT NULL,
@@ -72,14 +71,14 @@ CREATE TABLE parks(
     grnwyacces VARCHAR(3)NOT NULL,
     handball VARCHAR(3)NOT NULL,
     arts VARCHAR(3)NOT NULL,
-    multiuserm VARCHAR(3)NOT NULL,
+    multiuser VARCHAR(3)NOT NULL,
     playswings VARCHAR(3)NOT NULL,
     parking VARCHAR(3)NOT NULL,
     picture VARCHAR(3)NOT NULL,
     park_type VARCHAR(255)NOT NULL,
-    sum_acres NUMERIC,
-    shapestarea NUMERIC,
-    shapestlength NUMERIC
+    acres NUMERIC,
+    area NUMERIC,
+    length NUMERIC
 );
 
 	SELECT * from parks LIMIT 5;
