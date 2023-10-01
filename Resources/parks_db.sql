@@ -1,13 +1,13 @@
 CREATE TABLE parks(
-    park_id VARCHAR(255)PRIMARY KEY NOT NULL,
-    park_name VARCHAR(255)NOT NULL,
-    address VARCHAR(255)NOT NULL,
-    city VARCHAR(255)NOT NULL,
-    zip_code VARCHAR(10)NOT NULL,
-    district VARCHAR(255)NOT NULL,
-    phone VARCHAR(20)NOT NULL,
-    longitude NUMERIC,
-    latitude NUMERIC,
+    PARK_ID VARCHAR(255)PRIMARY KEY NOT NULL,
+    Park_name VARCHAR(255)NOT NULL,
+    Address VARCHAR(255)NOT NULL,
+    City VARCHAR(255)NOT NULL,
+    Zip_code VARCHAR(10)NOT NULL,
+    District VARCHAR(255)NOT NULL,
+    Phone VARCHAR(20)NOT NULL,
+    Longitude NUMERIC,
+    Latitude NUMERIC,
     parkurl VARCHAR(255)NOT NULL,
     operhours VARCHAR(255)NOT NULL,
     restroom VARCHAR(3)NOT NULL,
@@ -75,10 +75,10 @@ CREATE TABLE parks(
     playswings VARCHAR(3)NOT NULL,
     parking VARCHAR(3)NOT NULL,
     picture VARCHAR(3)NOT NULL,
-    park_type VARCHAR(255)NOT NULL,
-    acres NUMERIC,
-    area NUMERIC,
-    length NUMERIC
+    PARK_TYPE VARCHAR(255)NOT NULL,
+    Acres NUMERIC,
+    Area NUMERIC,
+    Length NUMERIC
 );
 
 	SELECT * from parks LIMIT 5;
