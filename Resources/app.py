@@ -17,3 +17,5 @@ def get_parks():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# API Link: http://127.0.0.1:5000/parks
