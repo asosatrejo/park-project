@@ -13,9 +13,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// Create an empty array to hold park markers
-const parkMarkers = [];
-
 // Fetch park data from the URL
 fetch(url)
     .then(response => response.json())
@@ -28,9 +25,6 @@ fetch(url)
             
             // Display the park name as a popup
             marker.bindPopup(park.Park_name);
-            
-            // Add the marker to the parkMarkers array
-            parkMarkers.push(marker);
         });
     })
     .catch(error => {
