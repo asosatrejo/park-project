@@ -77,3 +77,19 @@ body {
     text-align: right;
     padding: 20px;
   }
+
+  /* CSS for map container */
+#map-container {
+  float: left;
+  width: 70%;
+  height: 100%;
+  background-color: #fff;
+}
+
+/* CSS for filter container */
+#filter-container {
+  float: left;
+  width: 30%;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
