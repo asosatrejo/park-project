@@ -4,10 +4,20 @@ body {
     background-color: #d1f8b6;
   }
   
-  #map,
+  #map, 
+  #parkMap,
   body,
   html {
     height: 100%;
+  }
+
+  #parkName, 
+  #parkSite, 
+  #parkStreet,
+  #amenities, 
+  #numAmenities,
+  #avgAmenities {
+    text-align: left;
   }
 
   h1{
