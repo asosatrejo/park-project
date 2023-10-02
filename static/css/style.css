@@ -90,10 +90,11 @@ body {
 
   /* CSS for map container */
 #map-container {
-  float: left;
-  width: 70%;
+  float: center;
+  width: 50%;
   height: 100%;
   background-color: #fff;
+  align-items: center;
 }
 
 /* CSS for filter container */
