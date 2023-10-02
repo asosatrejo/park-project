@@ -22,13 +22,13 @@ fetch(proxyUrl + apiUrl)
     .then(response => response.json())
     .then(data => {
         // Loop through the park data and create markers for each park
-        data.forEach(parks => {
-            const latitude = parks.Latitude;
-            const longitude = parks.Longitude;
+        data.forEach(park => {
+            const latitude = park.Latitude;
+            const longitude = park.Longitude;
             const marker = L.marker([latitude, longitude]).addTo(map);
             
             // Display the park name as a popup
-            marker.bindPopup(parks.Park_name);
+            marker.bindPopup(park.Park_name);
             
             // Add the marker to the parkMarkers array
             parkMarkers.push(marker);
