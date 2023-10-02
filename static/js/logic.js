@@ -41,30 +41,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 markers.push(marker);
             });
 
-            // Populate the dropdown with unique park_type values
-            const parkTypes = [...new Set(data.map(park => park.PARK_TYPE))];
-            const typeDropdown = document.getElementById("parkTypeDropdown");
+            // Populate the dropdown with city values
+            const cities = [...new Set(data.map(park => park.City))];
+            const cityDropdown = document.getElementById("CityDropdown");
 
-            parkTypes.forEach(parkType => {
+            cities.forEach(city => {
                 const option = document.createElement("option");
-                option.value = parkType;
-                option.textContent = parkType;
-                typeDropdown.appendChild(option);
+                option.value = city;
+                option.textContent = city;
+                cityDropdown.appendChild(option);
             });
 
             // Event listener for dropdown change
-            typeDropdown.addEventListener("change", function () {
-                const selectedType = typeDropdown.value;
+            cityDropdown.addEventListener("change", function () {
+                const selectedCity = cityDropdown.value;
                 markers.forEach(marker => {
                     marker.setOpacity(1);
                 });
 
-                // Show markers that match the selected park_type or show all if "All Types" is selected
+                // Show markers that match the selected city or show all if "All Cities" is selected
                 data.forEach(park => {
                     const latitude = park.Latitude;
                     const longitude = park.Longitude;
 
-                    if (selectedType === "all" || park.PARK_TYPE === selectedType) {
+                    if (selectedCity === "all" || park.City === selectedCity) {
                         const matchingMarker = markers.find(marker => {
                             const [lat, lon] = marker.getLatLng();
                             return lat === latitude && lon === longitude;
