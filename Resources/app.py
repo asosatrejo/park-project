@@ -9,13 +9,13 @@ db = client["parks_db"]
 collection = db["park_data"]
 
 # Define a route to retrieve park data
-@app.route('/parks', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_parks():
     # Query the MongoDB collection and exclude the MongoDB _id field
     parks = list(collection.find({}, {'_id': 0}))
     return jsonify(parks)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True, port=5000)
 
-# API Link: http://127.0.0.1:5000/parks
+# API Link: http://127.0.0.1:5000/
