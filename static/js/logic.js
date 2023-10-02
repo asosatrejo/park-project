@@ -30,7 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Create a marker for each park
                 const marker = L.marker([latitude, longitude]);
-                marker.bindPopup(park.Park_name);
+                const popupContent = `<b>${park.Park_name}</b><br>${park.Address}`;
+    
+                marker.bindPopup(popupContent);
 
                 // Add the marker to the map
                 marker.addTo(map);
@@ -53,10 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
             // Event listener for dropdown change
             typeDropdown.addEventListener("change", function () {
                 const selectedType = typeDropdown.value;
-
-                // Hide all markers
                 markers.forEach(marker => {
-                    marker.setOpacity(0);
+                    marker.setOpacity(1);
                 });
 
                 // Show markers that match the selected park_type or show all if "All Types" is selected
