@@ -1,8 +1,7 @@
 // Wait for the DOM to be fully loaded before running the script
 document.addEventListener("DOMContentLoaded", function () {
     // Define the URL for fetching park data
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'http://127.0.0.1:5000/';
+    const url = 'http://127.0.0.1:5000/';
 
     // Create a Leaflet map and set the initial view
     console.log("Initializing Leaflet map...");
@@ -18,7 +17,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const parkMarkers = [];
 
 // Fetch park data from the URL
-fetch(proxyUrl + apiUrl)
+fetch(url)
     .then(response => response.json())
     .then(data => {
         // Loop through the park data and create markers for each park
