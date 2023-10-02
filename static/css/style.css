@@ -92,9 +92,7 @@ body {
 #map-container {
   float: center;
   width: 50%;
-  height: 100%;
-  background-color: #fff;
-  align-items: center;
+  height: 50%;
 }
 
 /* CSS for filter container */
