@@ -31,8 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Create a marker for each park
                 const marker = L.marker([latitude, longitude]);
                 const popupContent = `<b>${park.Park_name}</b><br>${park.Address}`;
-    
+
                 marker.bindPopup(popupContent);
+
+                // Store the park data with the marker
+                marker.park = park;
 
                 // Add the marker to the map
                 marker.addTo(map);
@@ -55,24 +58,23 @@ document.addEventListener("DOMContentLoaded", function () {
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
+                
+                // Update the selected city label
+                const selectedCityLabel = document.getElementById("SelectedCityLabel");
+                selectedCityLabel.textContent = `Selected City: ${selectedCity}`;
+
                 markers.forEach(marker => {
-                    marker.setOpacity(1);
-                });
+                    const park = marker.park; // Access park data associated with the marker
 
-                // Show markers that match the selected city or show all if "All Cities" is selected
-                data.forEach(park => {
-                    const latitude = park.Latitude;
-                    const longitude = park.Longitude;
-
-                    if (selectedCity === "all" || park.City === selectedCity) {
-                        const matchingMarker = markers.find(marker => {
-                            const [lat, lon] = marker.getLatLng();
-                            return lat === latitude && lon === longitude;
-                        });
-
-                        if (matchingMarker) {
-                            matchingMarker.setOpacity(1);
-                        }
+                    if (selectedCity === "all") {
+                        // Show all markers when "all" is selected
+                        marker.setOpacity(1);
+                    } else if (park.City === selectedCity) {
+                        // Show only markers that match the selected city
+                        marker.setOpacity(1);
+                    } else {
+                        // Hide markers that don't match the selected city
+                        marker.setOpacity(0);
                     }
                 });
             });
