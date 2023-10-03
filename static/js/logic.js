@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             data.forEach(park => {
                 const latitude = park.Latitude;
                 const longitude = park.Longitude;
-                console.log("Creating marker for park:", park.Park_name, "Lat:", latitude, "Lon:", longitude);
+                // console.log("Creating marker for park:", park.Park_name, "Lat:", latitude, "Lon:", longitude);
 
                 // Create a marker for each park
                 const marker = L.marker([latitude, longitude]);
@@ -61,19 +61,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
-                selectedCityLabel.textContent = `Selected City: ${selectedCity}`;
+                // selectedCityLabel.textContent = `Selected City: ${selectedCity}`;
 
                 markers.forEach(marker => {
                     const park = marker.park; // Access park data associated with the marker
-
+            
                     if (selectedCity === "all") {
                         // Show all markers when "all" is selected
                         marker.setOpacity(1);
                     } else if (park.City === selectedCity) {
-                        // Show only markers that match the selected city
-                        marker.setOpacity(1);
-                    } else {
-                        // Hide markers that don't match the selected city
+                            // Show only markers that match the selected city
+                            marker.setOpacity(1);
+                        }
+                    else {
+                        // Hide all markers by default
                         marker.setOpacity(0);
                     }
                 });
@@ -83,3 +84,4 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error fetching data:', error);
         });
 });
+
