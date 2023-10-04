@@ -1,4 +1,4 @@
-// Wait for the DOM to be fully loaded before running the script
+// Load the DOM
 document.addEventListener("DOMContentLoaded", function () {
     // Define the URL for fetching park data
     const url = 'http://127.0.0.1:5000/';
@@ -26,10 +26,19 @@ document.addEventListener("DOMContentLoaded", function () {
             data.forEach(park => {
                 const latitude = park.Latitude;
                 const longitude = park.Longitude;
-                // console.log("Creating marker for park:", park.Park_name, "Lat:", latitude, "Lon:", longitude);
-
-                // Create a marker for each park
-                const marker = L.marker([latitude, longitude]);
+                
+                // Determine the marker color according to playground or no playground
+                const markerColor = park.playground === "Yes" ? "green" : "red";
+                
+                // Create a marker with a custom icon
+                const marker = L.marker([latitude, longitude], {
+                    icon: L.divIcon({
+                        className: "custom-icon",
+                    html: `<div class="marker" style="background-color: ${markerColor};"></div>`
+                    })
+                });
+                
+                // Create a popup for each park
                 const popupContent = `<b>${park.Park_name}</b><br>${park.Address}`;
 
                 marker.bindPopup(popupContent);
