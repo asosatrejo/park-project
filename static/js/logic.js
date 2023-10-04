@@ -21,7 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             console.log("Fetched data:", data);
-
+            
+            // Function to find the coordinates of a city
+            function findCityCoordinates(cityName) {
+                for (const park of data) {
+                    if (park.City === cityName) {
+                        console.log(park.Latitude)
+                        return [park.Latitude, park.Longitude];
+                    }
+                }
+                return null;
+            }
             // Loop through the park data and create markers for each park
             data.forEach(park => {
                 const latitude = park.Latitude;
@@ -70,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
-                // selectedCityLabel.textContent = `Selected City: ${selectedCity}`;
 
                 markers.forEach(marker => {
                     const park = marker.park; // Access park data associated with the marker
@@ -78,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (selectedCity === "all") {
                         // Show all markers when "all" is selected
                         marker.setOpacity(1);
+                        map.setView([35.2271, -80.843124], 10);
                     } else if (park.City === selectedCity) {
                             // Show only markers that match the selected city
                             marker.setOpacity(1);
@@ -87,10 +97,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         marker.setOpacity(0);
                     }
                 });
+                map.setView(findCityCoordinates(selectedCity), 12);
             });
         })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
 });
-
