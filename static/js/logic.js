@@ -16,6 +16,33 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define an empty array to hold marker objects
     const markers = [];
 
+     // Display Individual Park Info When Selected
+     function updateParkInfo(park){
+        // Change Park Name When park marker is clicked
+        let element = document.getElementById("parkName");
+        element.innerHTML = park.Park_name;
+        // Change park link
+        element = document.getElementById("parkSite");
+        element.innerHTML = '<a href="'+park.parkurl +'">Website</a>'
+        // Change park Street Name
+        element = document.getElementById("parkStreet");
+        element.innerHTML = park.Address;
+        // Update park image
+        /*element = document.getElementById("parkMap");
+        element.innerHTML='<img src="ParkMaps/' + park.PARK_ID +'.png" alt="park image">';*/
+    }
+    // Display Park Amenities
+    const parkAmenities = ["restroom", "camping", "picnic", "playground",
+        "basketball", "tennis", "volleyball", "shelter", "walking", "dogpark",
+        "ampitheate", "garden", "fitness", "gazebo", "playswings", "parking"]
+    
+    function displayAmenities(park){
+        let element = document.getElementById("amenities");
+        
+        element.innerHTML = amenities_list;
+    }
+
+
     // Fetch park data from the URL
     fetch(url)
         .then(response => response.json())
@@ -58,6 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Add the marker to the map
                 marker.addTo(map);
+
+                // Add Event Listener when marker is clicked
+                marker.addEventListener('click', event => {
+                    updateParkInfo(park);
+                    displayAmenities(park);
+                 });
+
 
                 // Store the marker in the markers array
                 markers.push(marker);

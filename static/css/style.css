@@ -6,6 +6,7 @@ body {
   
   #map, 
   #parkMap,
+  #gaugeDiv,
   body,
   html {
     height: 100%;
