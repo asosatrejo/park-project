@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define an empty array to hold marker objects
     const markers = [];
 
+    // Display Individual Park Info When Selected
     function updateParkInfo(park){
         // Change Park Name When park marker is clicked
         let element = document.getElementById("parkName");
@@ -36,17 +37,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Display Park Amenities
+    const parkAmenities = ["restroom", "camping", "picnic", "playground",
+        "basketball", "tennis", "volleyball", "shelter", "walking", "dogpark",
+        "ampitheate", "garden", "fitness", "gazebo", "playswings", "parking"]
+    
     function displayAmenities(park){
         let element = document.getElementById("amenities");
-        let parkAmenities = []
-        
-            if (park.parking === "Yes"){
-                parkAmenities.push(" Parking")
+        const amenities_list = []
+        for (i=0, i; parkAmenities.length; i++){
+            if (park.parkAmenities[i] !== "No"){
+                amenities_list.push(park.parkAmenities[i]);
             }
-            if (park.playground === "Yes"){
-                parkAmenities.push(" Playground ")
-            }
-        
+        }
         element.innerHTML = parkAmenities;
     }
 
