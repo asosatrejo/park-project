@@ -13,38 +13,55 @@ document.addEventListener("DOMContentLoaded", function () {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-     // Create a legend control and position it in the bottom right corner
-     let legend = L.control({ position: "bottomright" });
-     legend.onAdd = function (map) {
-         const div = L.DomUtil.create("div", "legend");
-         // Define legend items
-         const legendItems = [
-             { label: "Playground", color: "green" },
-             { label: "No Playground", color: "red" },
-         ];
-         // Create legend items
-         legendItems.forEach((item) => {
-             const legendItem = L.DomUtil.create("div", "legend-item", div);
-             const legendMarker = L.DomUtil.create("div", "legend-marker", legendItem);
-             legendMarker.style.backgroundColor = item.color;
-             L.DomUtil.create("span", "legend-label", legendItem).textContent = item.label;
-         });
-         return div;
-     };
-     // Add the legend to the map
-     legend.addTo(map);
+
+    // Create a legend control and position it in the bottom right corner
+    let legend = L.control({ position: "bottomright" });
+    legend.onAdd = function (map) {
+        const div = L.DomUtil.create("div", "legend");
+
+        // Define legend items
+        const legendItems = [
+            { label: "Playground", color: "green" },
+            { label: "No Playground", color: "red" },
+        ];
+
+        // Create legend items
+        legendItems.forEach((item) => {
+            const legendItem = L.DomUtil.create("div", "legend-item", div);
+            const legendMarker = L.DomUtil.create("div", "legend-marker", legendItem);
+            legendMarker.style.backgroundColor = item.color;
+            L.DomUtil.create("span", "legend-label", legendItem).textContent = item.label;
+        });
+
+        return div;
+    };
+
+    // Add the legend to the map
+    legend.addTo(map);
 
     // Define an empty array to hold marker objects
     const markers = [];
 
-     // Display Individual Park Info When Selected
-     function updateParkInfo(park){
+    // Create overlay layers for different park types
+    const parkTypeOverlay = {
+        "Community Park": L.layerGroup(),
+        "Neighborhood Park": L.layerGroup(),
+        "Regional Park": L.layerGroup(),
+        "Golf Course": L.layerGroup(),
+        "Nature Preserve": L.layerGroup(),
+    };
+    // Add the overlay layers to the map using the L.control.layers control
+    const overlayControl = L.control.layers(null, parkTypeOverlay, { collapsed: false });
+    overlayControl.addTo(map);
+
+    // Display Individual Park Info When Selected
+    function updateParkInfo(park) {
         // Change Park Name When park marker is clicked
         let element = document.getElementById("parkName");
         element.innerHTML = park.Park_name;
         // Change park link
         element = document.getElementById("parkSite");
-        element.innerHTML = '<a href="'+park.parkurl +'">Website</a>'
+        element.innerHTML = '<a href="' + park.parkurl + '">Website</a>'
         // Change park Street Name
         element = document.getElementById("parkStreet");
         element.innerHTML = park.Address;
@@ -52,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
         /*element = document.getElementById("parkMap");
         element.innerHTML='<img src="ParkMaps/' + park.PARK_ID +'.png" alt="park image">';*/
     }
+
     // Display Park Amenities
     const parkAms = [" Restroom", " Camping", " Picnic Area", " Playground",
         " Basketball", " Tennis", " Volleyball", " Walking Trail", " Dogpark",
@@ -60,27 +78,28 @@ document.addEventListener("DOMContentLoaded", function () {
     function displayAmenities(park){
         const element = document.getElementById("amenities");
         element.innerHTML = '';
+
         let amenities_list = [];
         let amenities_count = -1;
 
         // Check for Amenities to Display
-        (park.restroom == "Yes") ? amenities_count++ && amenities_list.push(parkAms[0]): console.log("false");
-        (park.camping == "Yes") ? amenities_count++ && amenities_list.push(parkAms[1]): console.log("false");
-        (park.picnic == "Yes") ? amenities_count++ && amenities_list.push(parkAms[2]): console.log("false");
-        (park.playground == "Yes") ? amenities_count++ && amenities_list.push(parkAms[3]): console.log("false");
-        (park.basketball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[4]): console.log("false");
-        (park.tennis == "Yes") ? amenities_count++ && amenities_list.push(parkAms[5]): console.log("false");
-        (park.volleyball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[6]): console.log("false");
-        (park.walking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[7]): console.log("false");
-        (park.dogpark == "Yes") ? amenities_count++ && amenities_list.push(parkAms[8]): console.log("false");
-        (park.garden == "Yes") ? amenities_count++ && amenities_list.push(parkAms[9]): console.log("false");
-        (park.fitness == "Yes") ? amenities_count++ && amenities_list.push(parkAms[10]): console.log("false");
-        (park.gazebo == "Yes") ? amenities_count++ && amenities_list.push(parkAms[11]): console.log("false");
-        (park.playswings == "Yes") ? amenities_count++ && amenities_list.push(parkAms[12]): console.log("false");
-        (park.parking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[13]): console.log("false");
-        
+        (park.restroom == "Yes") ? amenities_count++ && amenities_list.push(parkAms[0]) : console.log("false");
+        (park.camping == "Yes") ? amenities_count++ && amenities_list.push(parkAms[1]) : console.log("false");
+        (park.picnic == "Yes") ? amenities_count++ && amenities_list.push(parkAms[2]) : console.log("false");
+        (park.playground == "Yes") ? amenities_count++ && amenities_list.push(parkAms[3]) : console.log("false");
+        (park.basketball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[4]) : console.log("false");
+        (park.tennis == "Yes") ? amenities_count++ && amenities_list.push(parkAms[5]) : console.log("false");
+        (park.volleyball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[6]) : console.log("false");
+        (park.walking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[7]) : console.log("false");
+        (park.dogpark == "Yes") ? amenities_count++ && amenities_list.push(parkAms[8]) : console.log("false");
+        (park.garden == "Yes") ? amenities_count++ && amenities_list.push(parkAms[9]) : console.log("false");
+        (park.fitness == "Yes") ? amenities_count++ && amenities_list.push(parkAms[10]) : console.log("false");
+        (park.gazebo == "Yes") ? amenities_count++ && amenities_list.push(parkAms[11]) : console.log("false");
+        (park.playswings == "Yes") ? amenities_count++ && amenities_list.push(parkAms[12]) : console.log("false");
+        (park.parking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[13]) : console.log("false");
+
         // Display Amenities in a list, create li to append to list
-        for (i=0; i<amenities_list.length; i++){
+        for (i = 0; i < amenities_list.length; i++) {
             let li = document.createElement('li');
             li.innerText = amenities_list[i];
             element.appendChild(li);
@@ -157,22 +176,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return null;
             }
+
             // Loop through the park data and create markers for each park
             data.forEach(park => {
                 const latitude = park.Latitude;
                 const longitude = park.Longitude;
-                
+
                 // Determine the marker color according to playground or no playground
                 const markerColor = park.playground === "Yes" ? "green" : "red";
-                
+
                 // Create a marker with a custom icon
                 const marker = L.marker([latitude, longitude], {
                     icon: L.divIcon({
                         className: "custom-icon",
-                    html: `<div class="marker" style="background-color: ${markerColor};"></div>`
+                        html: `<div class="marker" style="background-color: ${markerColor};"></div>`
                     })
                 });
-                
+
                 // Create a popup for each park
                 const popupContent = `<b>${park.Park_name}</b>`;
 
@@ -181,6 +201,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Store the park data with the marker
                 marker.park = park;
 
+                // Determine the overlay layer based on the park type and add the marker to it
+                if (parkTypeOverlay[park.Park_type]) {
+                    parkTypeOverlay[park.Park_type].addLayer(marker);
+                }
+
                 // Add the marker to the map
                 marker.addTo(map);
 
@@ -188,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 marker.addEventListener('click', event => {
                     updateParkInfo(park);
                     displayAmenities(park);
+
                     
                  });
 
@@ -214,23 +240,22 @@ document.addEventListener("DOMContentLoaded", function () {
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
-                
+
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
 
                 markers.forEach(marker => {
                     const park = marker.park; // Access park data associated with the marker
-                    
+
                     if (selectedCity === "all") {
                         // Show all markers when "all" is selected
                         marker.setOpacity(1);
                         map.setView([35.2271, -80.843124], 10);
                         createParkChart(allZip);
                     } else if (park.City === selectedCity) {
-                            // Show only markers that match the selected city
-                            marker.setOpacity(1);
-                        }
-                    else {
+                        // Show only markers that match the selected city
+                        marker.setOpacity(1);
+                    } else {
                         // Hide all markers by default
                         marker.setOpacity(0);
                     }

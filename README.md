@@ -1,12 +1,12 @@
 # park-project
 # Project Overview
-This data visualization project aims to provide an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
+This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
 
 Our project offers three main views:
 
-**Map View:** Displaying park locations on an interactive map.
-**Park Information View:** Providing detailed information about a selected park.
-**Park Amenities View:** Listing amenities available at the selected park.
+**Map View:** Displaying park locations on an interactive map.<br>
+**Park Information View:** Providing detailed information about a selected park.<br>
+**Park Amenities View:** Listing amenities available at the selected park.<br>
 
 **Usage**<br>
 The map view displays markers representing parks on an interactive map.
@@ -26,6 +26,17 @@ This project includes records for 365 parks in Mecklenburg County obtained from:
 * [The City of Charlotte Open Data Portal](https://data.charlottenc.gov/)
 * [Open Mapping Mecklenburg County GIS](https://maps.mecknc.gov/openmapping/index.html)
 
-**Resources**<br>
+## Helpful Links**<be>
+### Chart.js
+- [Getting Started](https://www.chartjs.org/docs/latest/getting-started/)
+- [Updating Charts using Charts.js](https://www.chartjs.org/docs/latest/developers/updates.html)
+
+### HTML Related
+- [How to create columns in HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
+- [JavaScript HTML DOM EventListener](https://www.w3schools.com/js/js_htmldom_eventlistener.asp)
 - [Palette](http://colrd.com/palette/19065/)
 - [How to create columns using HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
+- [How to create columns using HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
+
+### Other
+- [An Abbreviated JavaScript If Statement](https://www.thoughtco.com/create-a-shorter-if-statement-in-javascript-2037428#:~:text=variable%20name%20contains.-,A%20Shorter%20IF%20Statement,are%20optional%20for%20single%20statements)
