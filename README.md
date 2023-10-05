@@ -34,10 +34,10 @@ This project includes records for 365 parks in Mecklenburg County obtained from:
 ### HTML Related
 - [How to create columns in HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
 - [JavaScript HTML DOM EventListener](https://www.w3schools.com/js/js_htmldom_eventlistener.asp)
-- [Palette](http://colrd.com/palette/19065/)
 - [How to create columns using HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
 - [How to create columns using HTML](https://www.educative.io/answers/how-to-create-columns-in-html)
 
 ### Other
 - [An Abbreviated JavaScript If Statement](https://www.thoughtco.com/create-a-shorter-if-statement-in-javascript-2037428#:~:text=variable%20name%20contains.-,A%20Shorter%20IF%20Statement,are%20optional%20for%20single%20statements)
 - [In the park Color Palette](https://www.color-hex.com/color-palette/7650)
+- [Palette](http://colrd.com/palette/19065/)
