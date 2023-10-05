@@ -302,7 +302,7 @@ var data = [
     {
         domain: { x: [0, 1], y: [0, 1] },
         value: 2, // Updated value to 2
-        title: { text: "Park Amenities: 2/14" }, // Updated title to display "2/14"
+        title: { text: "Average Amenities: 2/14" }, // Updated title to display "2/14"
         type: "indicator",
         mode: "gauge+number",
         gauge: {
