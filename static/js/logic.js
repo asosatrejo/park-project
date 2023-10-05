@@ -32,14 +32,34 @@ document.addEventListener("DOMContentLoaded", function () {
         element.innerHTML='<img src="ParkMaps/' + park.PARK_ID +'.png" alt="park image">';*/
     }
     // Display Park Amenities
-    const parkAmenities = ["restroom", "camping", "picnic", "playground",
-        "basketball", "tennis", "volleyball", "shelter", "walking", "dogpark",
-        "ampitheate", "garden", "fitness", "gazebo", "playswings", "parking"]
+    const parkAms = [" Restroom", " Camping", " Picnic Area", " Playground",
+        " Basketball", " Tennis", " Volleyball", " Walking Trail", " Dogpark",
+        " Garden", " Fitness", " Gazebo", " Play Swings", " Parking"]
     
     function displayAmenities(park){
         let element = document.getElementById("amenities");
+        let amenities_list = [];
+        let amenities_count = -1;
+
+        // Check for Amenities to Display
+        (park.restroom == "Yes") ? amenities_count++ && amenities_list.push(parkAms[0]): console.log("false");
+        (park.camping == "Yes") ? amenities_count++ && amenities_list.push(parkAms[1]): console.log("false");
+        (park.picnic == "Yes") ? amenities_count++ && amenities_list.push(parkAms[2]): console.log("false");
+        (park.playground == "Yes") ? amenities_count++ && amenities_list.push(parkAms[3]): console.log("false");
+        (park.basketball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[4]): console.log("false");
+        (park.tennis == "Yes") ? amenities_count++ && amenities_list.push(parkAms[5]): console.log("false");
+        (park.volleyball == "Yes") ? amenities_count++ && amenities_list.push(parkAms[6]): console.log("false");
+        (park.walking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[7]): console.log("false");
+        (park.dogpark == "Yes") ? amenities_count++ && amenities_list.push(parkAms[8]): console.log("false");
+        (park.garden == "Yes") ? amenities_count++ && amenities_list.push(parkAms[9]): console.log("false");
+        (park.fitness == "Yes") ? amenities_count++ && amenities_list.push(parkAms[10]): console.log("false");
+        (park.gazebo == "Yes") ? amenities_count++ && amenities_list.push(parkAms[11]): console.log("false");
+        (park.playswings == "Yes") ? amenities_count++ && amenities_list.push(parkAms[12]): console.log("false");
+        (park.parking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[13]): console.log("false");
         
+        (amenities_count === -1) ? amenities_count = 0 : amenities_count = amenities_count;
         element.innerHTML = amenities_list;
+        return amenities_count;
     }
 
     // Fetch park data from the URL
