@@ -40,3 +40,4 @@ This project includes records for 365 parks in Mecklenburg County obtained from:
 
 ### Other
 - [An Abbreviated JavaScript If Statement](https://www.thoughtco.com/create-a-shorter-if-statement-in-javascript-2037428#:~:text=variable%20name%20contains.-,A%20Shorter%20IF%20Statement,are%20optional%20for%20single%20statements)
+- [In the park Color Palette](https://www.color-hex.com/color-palette/7650)
