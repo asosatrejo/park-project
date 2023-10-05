@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
         element.innerHTML = amenities_list;
     }
 
-
     // Fetch park data from the URL
     fetch(url)
         .then(response => response.json())
@@ -91,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     updateParkInfo(park);
                     displayAmenities(park);
                  });
-
 
                 // Store the marker in the markers array
                 markers.push(marker);
