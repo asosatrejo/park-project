@@ -57,8 +57,14 @@ document.addEventListener("DOMContentLoaded", function () {
         (park.playswings == "Yes") ? amenities_count++ && amenities_list.push(parkAms[12]): console.log("false");
         (park.parking == "Yes") ? amenities_count++ && amenities_list.push(parkAms[13]): console.log("false");
         
+        // Display Amenities in a list, create li to append to list
+        for (i=0; i<amenities_list.length; i++){
+            let li = document.createElement('li');
+            li.innerText = amenities_list[i];
+            element.appendChild(li);
+        }
+
         (amenities_count === -1) ? amenities_count = 0 : amenities_count = amenities_count;
-        element.innerHTML = amenities_list;
         return amenities_count;
     }
 
