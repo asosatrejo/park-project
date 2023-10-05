@@ -1,12 +1,12 @@
 # park-project
 # Project Overview
-This data visualization project aims to provide an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
+This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
 
 Our project offers three main views:
 
-**Map View:** Displaying park locations on an interactive map.
-**Park Information View:** Providing detailed information about a selected park.
-**Park Amenities View:** Listing amenities available at the selected park.
+**Map View:** Displaying park locations on an interactive map.<br>
+**Park Information View:** Providing detailed information about a selected park.<br>
+**Park Amenities View:** Listing amenities available at the selected park.<br>
 
 **Usage**<br>
 The map view displays markers representing parks on an interactive map.
