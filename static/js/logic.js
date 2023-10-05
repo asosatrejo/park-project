@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    // Color variables
+    const yesPlay = "#08b626";
+    const noPlay = "#2665ba"
 
     // Create a legend control and position it in the bottom right corner
     let legend = L.control({ position: "bottomright" });
@@ -21,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Define legend items
         const legendItems = [
-            { label: "Playground", color: "green" },
-            { label: "No Playground", color: "red" },
+            { label: "Playground", color: yesPlay },
+            { label: "No Playground", color: noPlay },
         ];
 
         // Create legend items
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     // Add the overlay layers to the map using the L.control.layers control
     const overlayControl = L.control.layers(null, parkTypeOverlay, { collapsed: false });
-    overlayControl.addTo(map);
+    //overlayControl.addTo(map);
 
     // Display Individual Park Info When Selected
     function updateParkInfo(park) {
@@ -61,13 +64,16 @@ document.addEventListener("DOMContentLoaded", function () {
         element.innerHTML = park.Park_name;
         // Change park link
         element = document.getElementById("parkSite");
-        element.innerHTML = '<a href="' + park.parkurl + '">Website</a>'
+        element.innerHTML = "More Info: " + '<a href="' + park.parkurl + '">Website</a>'
         // Change park Street Name
         element = document.getElementById("parkStreet");
         element.innerHTML = park.Address;
-        // Update park image
-        /*element = document.getElementById("parkMap");
-        element.innerHTML='<img src="ParkMaps/' + park.PARK_ID +'.png" alt="park image">';*/
+        // Change park Phone
+        element = document.getElementById("parkNum");
+        element.innerHTML = "Phone Number: " + park.Phone;
+        // Change park Type
+        element = document.getElementById("parkType");
+        element.innerHTML = park.PARK_TYPE;
     }
 
     // Display Park Amenities
@@ -129,17 +135,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 datasets: [ { data: Object.values(zipCounts), 
                     label: 'Zip Codes',
                     backgroundColor: [ 
-                        'rgba(255, 99, 132, 0.2)', 
-                        'rgba(54, 162, 235, 0.2)', 
-                        'rgba(255, 206, 86, 0.2)', 
-                        'rgba(75, 192, 192, 0.2)', 
-                        'rgba(153, 102, 255, 0.2)' ], 
+                        'rgba(110,144,60,0.5)', 
+                        'rgba(148,229,107,0.5)', 
+                        'rgba(0, 138, 133, 0.5)', 
+                        'rgba(8,182,38,0.5)', 
+                        'rgba(38,101,186,0.5)' ], 
                     borderColor: [ 
-                        'rgba(255, 99, 132, 1)', 
-                        'rgba(54, 162, 235, 1)', 
-                        'rgba(255, 206, 86, 1)', 
-                        'rgba(75, 192, 192, 1)', 
-                        'rgba(153, 102, 255, 1)' ], 
+                        'rgba(110,144,60,1)', 
+                        'rgba(148,229,107,1)', 
+                        'rgba(0, 138, 133, 1)', 
+                        'rgba(8,182,38,1)', 
+                        'rgba(38,101,186,1)' ], 
                     borderWidth: 1, }, ], }; 
             // Define the chart options 
             const chartOptions = { 
@@ -183,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const longitude = park.Longitude;
 
                 // Determine the marker color according to playground or no playground
-                const markerColor = park.playground === "Yes" ? "green" : "red";
+                const markerColor = park.playground === "Yes" ? yesPlay : noPlay;
 
                 // Create a marker with a custom icon
                 const marker = L.marker([latitude, longitude], {
