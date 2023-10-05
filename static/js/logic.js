@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 
                 // Create a popup for each park
-                const popupContent = `<b>${park.Park_name}</b><br>${park.Address}`;
+                const popupContent = `<b>${park.Park_name}</b>`;
 
                 marker.bindPopup(popupContent);
 
