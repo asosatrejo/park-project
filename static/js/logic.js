@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
         " Garden", " Fitness", " Gazebo", " Play Swings", " Parking"]
     
     function displayAmenities(park){
-        let element = document.getElementById("amenities");
+        const element = document.getElementById("amenities");
+        element.innerHTML = '';
         let amenities_list = [];
         let amenities_count = -1;
 
@@ -66,14 +67,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
         (amenities_count === -1) ? amenities_count = 0 : amenities_count = amenities_count;
         return amenities_count;
-    }
+    };
+
+    // Create Bar Chart to Display Zipcodes
+    // Function to create and display a chart 
+    let selectedZip = [];
+    function createParkChart(park) { 
+        // Extract park information 
+        const zipCounts = {}; 
+        selectedZip.forEach((x) => {zipCounts[x] = (zipCounts[x]||0)+1;});
+        // Get the canvas element where the chart will be displayed 
+        const chartCanvas = document.getElementById('parkChart'); 
+        // Create a chart context 
+        const ctx = chartCanvas.getContext('2d'); 
+        // Define the chart data 
+        const chartData = { 
+            labels: Object.keys(zipCounts), 
+            datasets: [ { data: Object.values(zipCounts), 
+                backgroundColor: [ 
+                    'rgba(255, 99, 132, 0.2)', 
+                    'rgba(54, 162, 235, 0.2)', 
+                    'rgba(255, 206, 86, 0.2)', 
+                    'rgba(75, 192, 192, 0.2)', 
+                    'rgba(153, 102, 255, 0.2)' ], 
+                borderColor: [ 
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(54, 162, 235, 1)', 
+                    'rgba(255, 206, 86, 1)', 
+                    'rgba(75, 192, 192, 1)', 
+                    'rgba(153, 102, 255, 1)' ], 
+                borderWidth: 1, }, ], }; 
+        // Define the chart options 
+        const chartOptions = { 
+            responsive: true, 
+            maintainAspectRatio: false, }; 
+        // Create the chart 
+        const parkChart = new Chart(ctx, { type: 'bar', data: chartData, options: chartOptions, }); 
+        // Show the chart 
+        chartCanvas.style.display = 'block'; 
+    } 
 
     // Fetch park data from the URL
     fetch(url)
         .then(response => response.json())
         .then(data => {
             console.log("Fetched data:", data);
-            
+
             // Function to find the coordinates of a city
             function findCityCoordinates(cityName) {
                 for (const park of data) {
@@ -115,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 marker.addEventListener('click', event => {
                     updateParkInfo(park);
                     displayAmenities(park);
+                    createParkChart(park);
                  });
 
                 // Store the marker in the markers array
@@ -136,6 +176,14 @@ document.addEventListener("DOMContentLoaded", function () {
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
                 
+                // Filter data by park based on selected city
+                selectedZip = data.filter(park => {
+                    return park.City === selectedCity;
+                })
+                .map(park => {
+                    return park["Zip Code"]; // Return zipcodes
+                })
+
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
 
