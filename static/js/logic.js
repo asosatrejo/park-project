@@ -41,6 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define an empty array to hold marker objects
     const markers = [];
 
+    // Create overlay layers for different park types
+    const parkTypeOverlay = {
+        "Community Park": L.layerGroup(),
+        "Neighborhood Park": L.layerGroup(),
+        "Regional Park": L.layerGroup(),
+        "Golf Course": L.layerGroup(),
+        "Nature Preserve": L.layerGroup(),
+    };    
+
      // Display Individual Park Info When Selected
      function updateParkInfo(park){
         // Change Park Name When park marker is clicked
@@ -134,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 marker.park = park;
 
                 // Add the marker to the map
-                marker.addTo(map);
+                parkTypeOverlay[park.PARK_TYPE].addLayer(marker);
 
                 // Add Event Listener when marker is clicked
                 marker.addEventListener('click', event => {
@@ -160,7 +169,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
-                
+            
+                // Create an overlay control
+                const overlayControl = L.control.layers(null, parkTypeOverlay, { collapsed: false });
+    
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
 
@@ -182,6 +194,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
                 map.setView(findCityCoordinates(selectedCity), 12);
             });
+
+            // Add the overlay control to the map
+            overlayControl.addTo(map);
         })
         .catch(error => {
             console.error('Error fetching data:', error);
