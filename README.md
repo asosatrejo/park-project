@@ -1,6 +1,6 @@
 # park-project
 # Project Overview
-This data visualization project aims to provide an interactive and informative visualization of parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
+This data visualization project aims to provide an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
 
 Our project offers three main views:
 
@@ -22,7 +22,9 @@ This project utilizes the following libraries and technologies:
 * Flask: Used for creating the API and serving data to the frontend.
 
 **Data Source**
-This project includes records for 365 parks in Mecklenburg County. 
+This project includes records for 365 parks in Mecklenburg County obtained from:
+* [The City of Charlotte Open Data Portal](https://data.charlottenc.gov/)
+* [Open Mapping Mecklenburg County GIS](https://maps.mecknc.gov/openmapping/index.html)
 
 # Resources
 - [Palette](http://colrd.com/palette/19065/)
