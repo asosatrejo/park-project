@@ -4,6 +4,7 @@ body {
   background-color: #d1f8b6;
 }
 
+
 #map, 
 #parkMap,
 #gaugeDiv,
@@ -11,6 +12,7 @@ body,
 html {
   height: 100%;
 }
+
 
 #parkName, 
 #parkSite, 
@@ -21,37 +23,49 @@ html {
   text-align: left;
 }
 
-h1{
-  color: #004529;
-  text-align: center;
-  font-size: 60px;
-}
-h2 {
-  color: #004529;
-  text-align: center;
-  font-size: 30px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-h3 {
-  color: #004529;
-  text-align: left;
-  font-size: 25px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-h4 {
-  text-align: left;
-  font-size: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
-p {
-  text-align: left;
-  font-size: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-}
+  h1{
+    color: #004529;
+    text-align: center;
+    font-size: 60px;
+  }
+  h2 {
+    color: #004529;
+    text-align: center;
+    font-size: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  h3 {
+    color: #004529;
+    text-align: left;
+    font-size: 25px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  h4 {
+    text-align: left;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  h5 {
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  p {
+    text-align: left;
+    font-size: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  
+  ul {
+    padding-left: 70px;
+    font-size: 20px;
+  }
+
   
 
 #subtitle{
