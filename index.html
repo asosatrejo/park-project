@@ -15,8 +15,13 @@
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 
+
+  <!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-2.26.0.min.js'></script>
+
   <!--Chart.js library-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+
 </head>
 
 <body>
@@ -73,6 +78,11 @@ crossorigin=""></script>
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <!-- Our JavaScript -->
 <script type="text/javascript" src="static/js/logic.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="amenitiesGauge" style="width: 400px; height: 120px;"></div>
+
+<div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 
 </body>
 

@@ -165,12 +165,25 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     
+    function createAmenityMeter(count) {
+        const totalAmenities = 14;
+        const percentage = (count / totalAmenities) * 100;
+        return `
+            <div class="amenity-meter-bg">
+                <div class="amenity-meter-fill" style="width: ${percentage}%;" data-count="${count}"></div>
+            </div>
+            <div class="amenity-count">${count}/${totalAmenities} amenities</div>
+        `;
+    }
 
     // Fetch park data from the URL
     fetch(url)
         .then(response => response.json())
         .then(data => {
             console.log("Fetched data:", data);
+
+
+// ----------------- Main -----------------
 
             // Function to find the coordinates of a city
             function findCityCoordinates(cityName) {
@@ -182,15 +195,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 return null;
             }
-
             // Loop through the park data and create markers for each park
             data.forEach(park => {
                 const latitude = park.Latitude;
                 const longitude = park.Longitude;
-
                 // Determine the marker color according to playground or no playground
                 const markerColor = park.playground === "Yes" ? yesPlay : noPlay;
-
                 // Create a marker with a custom icon
                 const marker = L.marker([latitude, longitude], {
                     icon: L.divIcon({
@@ -198,39 +208,32 @@ document.addEventListener("DOMContentLoaded", function () {
                         html: `<div class="marker" style="background-color: ${markerColor};"></div>`
                     })
                 });
-
+                // Amenities
+                const amenitiesCount = displayAmenities(park);
+                const amenityMeterHtml = createAmenityMeter(amenitiesCount);
                 // Create a popup for each park
-                const popupContent = `<b>${park.Park_name}</b>`;
-
+                const popupContent = `<b>${park.Park_name}</b><br>${amenityMeterHtml}`;
                 marker.bindPopup(popupContent);
-
                 // Store the park data with the marker
                 marker.park = park;
-
                 // Determine the overlay layer based on the park type and add the marker to it
                 if (parkTypeOverlay[park.Park_type]) {
                     parkTypeOverlay[park.Park_type].addLayer(marker);
                 }
-
                 // Add the marker to the map
                 marker.addTo(map);
-
                 // Add Event Listener when marker is clicked
                 marker.addEventListener('click', event => {
                     updateParkInfo(park);
                     displayAmenities(park);
-
                     
                  });
-
                 // Store the marker in the markers array
                 markers.push(marker);
             });
-
             // Populate the dropdown with city values
             const cities = [...new Set(data.map(park => park.City))];
             const cityDropdown = document.getElementById("CityDropdown");
-
             cities.forEach(city => {
                 const option = document.createElement("option");
                 option.value = city;
@@ -242,17 +245,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 return park["Zip Code"]; // Return zipcodes
             });
             createParkChart(allZip);
-
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
-
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
-
                 markers.forEach(marker => {
                     const park = marker.park; // Access park data associated with the marker
-
                     if (selectedCity === "all") {
                         // Show all markers when "all" is selected
                         marker.setOpacity(1);
@@ -267,7 +266,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
                 map.setView(findCityCoordinates(selectedCity), 12);
-
                 // Filter data by park based on selected city
                 const selectedZip = data.filter(park => {
                     return park.City === selectedCity;
@@ -275,11 +273,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 .map(park => {
                     return park["Zip Code"]; // Return zipcodes
                 });
-
                 createParkChart(selectedZip);
             });
-        })
+            // Calculate the average amenities across all parks
+            let totalAmenitiesCount = 0;
+            data.forEach(park => {
+            totalAmenitiesCount += displayAmenities(park);
+            });
+            const averageAmenities = Math.round(totalAmenitiesCount / data.length);  // Round the average value
+            // Create and display the average amenities meter
+            const averageAmenityMeterHtml = createAmenityMeter(averageAmenities);
+            const averageAmenityMeterDiv = document.createElement('div');
+            averageAmenityMeterDiv.id = 'averageAmenityMeter';
+            averageAmenityMeterDiv.innerHTML = `
+            <h3>Average Park Amenities</h3>
+            ${averageAmenityMeterHtml}
+            `;
+            document.body.appendChild(averageAmenityMeterDiv);
+            })
         .catch(error => {
             console.error('Error fetching data:', error);
         });
+        
 });
+
+// Gauge Chart
+var data = [
+    {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: 2, // Updated value to 2
+        title: { text: "Park Amenities: 2/14" }, // Updated title to display "2/14"
+        type: "indicator",
+        mode: "gauge+number",
+        gauge: {
+            axis: {
+                range: [null, 14] // Set the maximum range of the gauge to 14
+            }
+        }
+    }
+    ];
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('gaugeDiv', data, layout);
