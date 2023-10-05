@@ -13,6 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+     // Create a legend control and position it in the bottom right corner
+     let legend = L.control({ position: "bottomright" });
+     legend.onAdd = function (map) {
+         const div = L.DomUtil.create("div", "legend");
+         // Define legend items
+         const legendItems = [
+             { label: "Playground", color: "green" },
+             { label: "No Playground", color: "red" },
+         ];
+         // Create legend items
+         legendItems.forEach((item) => {
+             const legendItem = L.DomUtil.create("div", "legend-item", div);
+             const legendMarker = L.DomUtil.create("div", "legend-marker", legendItem);
+             legendMarker.style.backgroundColor = item.color;
+             L.DomUtil.create("span", "legend-label", legendItem).textContent = item.label;
+         });
+         return div;
+     };
+     // Add the legend to the map
+     legend.addTo(map);
+
     // Define an empty array to hold marker objects
     const markers = [];
 
