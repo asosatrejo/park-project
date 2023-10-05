@@ -70,42 +70,55 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // Create Bar Chart to Display Zipcodes
-    // Function to create and display a chart 
-    let selectedZip = [];
-    function createParkChart(park) { 
+    // Function to create and display a chart
+    let parkChart = null;
+    function createParkChart(selectedZip) { 
         // Extract park information 
         const zipCounts = {}; 
         selectedZip.forEach((x) => {zipCounts[x] = (zipCounts[x]||0)+1;});
+        const chartCanvas = document.getElementById('parkChart');
+        
         // Get the canvas element where the chart will be displayed 
-        const chartCanvas = document.getElementById('parkChart'); 
-        // Create a chart context 
-        const ctx = chartCanvas.getContext('2d'); 
-        // Define the chart data 
-        const chartData = { 
-            labels: Object.keys(zipCounts), 
-            datasets: [ { data: Object.values(zipCounts), 
-                backgroundColor: [ 
-                    'rgba(255, 99, 132, 0.2)', 
-                    'rgba(54, 162, 235, 0.2)', 
-                    'rgba(255, 206, 86, 0.2)', 
-                    'rgba(75, 192, 192, 0.2)', 
-                    'rgba(153, 102, 255, 0.2)' ], 
-                borderColor: [ 
-                    'rgba(255, 99, 132, 1)', 
-                    'rgba(54, 162, 235, 1)', 
-                    'rgba(255, 206, 86, 1)', 
-                    'rgba(75, 192, 192, 1)', 
-                    'rgba(153, 102, 255, 1)' ], 
-                borderWidth: 1, }, ], }; 
-        // Define the chart options 
-        const chartOptions = { 
-            responsive: true, 
-            maintainAspectRatio: false, }; 
-        // Create the chart 
-        const parkChart = new Chart(ctx, { type: 'bar', data: chartData, options: chartOptions, }); 
-        // Show the chart 
-        chartCanvas.style.display = 'block'; 
-    } 
+        if (!parkChart) {
+             
+            // Create a chart context 
+            const ctx = chartCanvas.getContext('2d'); 
+            // Define the chart data 
+            const chartData = { 
+                labels: Object.keys(zipCounts), 
+                datasets: [ { data: Object.values(zipCounts), 
+                    label: 'Zip Codes',
+                    backgroundColor: [ 
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)', 
+                        'rgba(255, 206, 86, 0.2)', 
+                        'rgba(75, 192, 192, 0.2)', 
+                        'rgba(153, 102, 255, 0.2)' ], 
+                    borderColor: [ 
+                        'rgba(255, 99, 132, 1)', 
+                        'rgba(54, 162, 235, 1)', 
+                        'rgba(255, 206, 86, 1)', 
+                        'rgba(75, 192, 192, 1)', 
+                        'rgba(153, 102, 255, 1)' ], 
+                    borderWidth: 1, }, ], }; 
+            // Define the chart options 
+            const chartOptions = { 
+                responsive: true, 
+                maintainAspectRatio: false, }; 
+            // Create the chart 
+            parkChart = new Chart(ctx, { type: 'bar', data: chartData, options: chartOptions, }); 
+             
+        } else {
+            parkChart.data.datasets[0].data = Object.values(zipCounts);
+            parkChart.data.labels.data = Object.values(zipCounts);
+            parkChart.update();
+        };
+        
+        chartCanvas.style.display = 'block'; // Show the chart
+         
+    };
+
+    
 
     // Fetch park data from the URL
     fetch(url)
@@ -154,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 marker.addEventListener('click', event => {
                     updateParkInfo(park);
                     displayAmenities(park);
-                    createParkChart(park);
+                    
                  });
 
                 // Store the marker in the markers array
@@ -171,29 +184,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 option.textContent = city;
                 cityDropdown.appendChild(option);
             });
+            
+            const allZip = data.map(park => {
+                return park["Zip Code"]; // Return zipcodes
+            });
+            createParkChart(allZip);
 
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
                 
-                // Filter data by park based on selected city
-                selectedZip = data.filter(park => {
-                    return park.City === selectedCity;
-                })
-                .map(park => {
-                    return park["Zip Code"]; // Return zipcodes
-                })
-
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
 
                 markers.forEach(marker => {
                     const park = marker.park; // Access park data associated with the marker
-            
+                    
                     if (selectedCity === "all") {
                         // Show all markers when "all" is selected
                         marker.setOpacity(1);
                         map.setView([35.2271, -80.843124], 10);
+                        createParkChart(allZip);
                     } else if (park.City === selectedCity) {
                             // Show only markers that match the selected city
                             marker.setOpacity(1);
@@ -204,6 +215,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 });
                 map.setView(findCityCoordinates(selectedCity), 12);
+
+                // Filter data by park based on selected city
+                const selectedZip = data.filter(park => {
+                    return park.City === selectedCity;
+                })
+                .map(park => {
+                    return park["Zip Code"]; // Return zipcodes
+                });
+
+                createParkChart(selectedZip);
             });
         })
         .catch(error => {
