@@ -105,11 +105,14 @@ body {
 }
 
 .legend {
-  background-color: #d1f8b6;
-  padding: 10px;
-  border: 1px solid #d1f8b6;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 10px;
+  padding: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
 }
 
 .legend-item {
@@ -121,7 +124,6 @@ body {
 .legend-marker {
   width: 20px;
   height: 20px;
-  border-radius: 50%;
   margin-right: 5px;
 }
 
