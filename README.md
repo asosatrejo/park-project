@@ -1,5 +1,7 @@
 # park-project
 # Project Overview
+![image](https://github.com/asosatrejo/park-project/assets/135572871/2e243cf5-0c31-485a-90d9-9a748c30656c)
+
 This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
 
 Our project offers three main views:
