@@ -28,7 +28,7 @@ This project includes records for 365 parks in Mecklenburg County obtained from:
 * [The City of Charlotte Open Data Portal](https://data.charlottenc.gov/)
 * [Open Mapping Mecklenburg County GIS](https://maps.mecknc.gov/openmapping/index.html)
 
-## Helpful Links**<be>
+## Helpful Links
 ### Chart.js
 - [Getting Started](https://www.chartjs.org/docs/latest/getting-started/)
 - [Updating Charts using Charts.js](https://www.chartjs.org/docs/latest/developers/updates.html)
