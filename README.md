@@ -2,7 +2,8 @@
 # Project Overview
 ![image](https://github.com/asosatrejo/park-project/assets/135572871/2e243cf5-0c31-485a-90d9-9a748c30656c)
 
-> This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area. 
+> This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area.
+
 The purpose of the project was to create a dashboard that can filter through 300+ parks in Mecklenburg County to help the user find the perfect park to visit. With a map displaying all parks, separated by playground / no playground, a bar chart to compare parks in different zip codes, and a gauge to show the average amenities in parks, the user can use data to choose a park! Once a marker is selected, information will be displayed to the right to find the name, address, and a list of amenities available. 
 
 # Project highlights:
