@@ -17,7 +17,7 @@ This data visualization project displays an interactive visualization of Mecklen
 The map view displays markers representing parks on an interactive map.
 Users can select a city from the dropdown menu to filter parks by city.
 Clicking on a park marker on the map will display detailed information about the selected park.
-The "Park Amenities View" lists the amenities available at the selected park.
+The "Park Info" section updates to list the amenities available at the selected park.
 
 ### Data Source
 This project includes records for 365 parks in Mecklenburg County obtained from:
