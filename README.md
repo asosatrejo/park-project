@@ -5,12 +5,12 @@
 This data visualization project displays an interactive visualization of Mecklenburg County parks and their amenities within a given area. The project utilizes various technologies, including Python Flask for the API, HTML/CSS for the frontend, JavaScript for user interaction, and Leaflet for map visualization.
 
 # Project highlights:
-**Backend** Our visualization includes a Python Flask-powered API, HTML/CSS, JavaScript, and MongoDB database. <br>
-**Frontend** Our Mecklenburg County Parks dashboard page includes multiple charts that all update from the same dataset. <br>
-**JS Library** The dashboard displays park zip codes using the charts.js library that updates when a specific city is selected. <br>
-**Dataset** It is powered by a dataset containing records for 365 parks. <br>
-**User-driven interaction** Our dashboard uses a drop down menu to filter parks by city with a zoom feature that centers the map.. Markers are also color coded to display parks with and without playgrounds. <br>
-**Views** The visualization includes a Leaflet map with a tile layer from OpenStreetMaps for location, a chart with park zip codes, a filtered list of park amenities, and an amenities gauge to show the average number of 
+* **Backend** Our visualization includes a Python Flask-powered API, HTML/CSS, JavaScript, and MongoDB database. <br>
+* **Frontend** Our Mecklenburg County Parks dashboard page includes multiple charts that all update from the same dataset. <br>
+* **JS Library** The dashboard displays park zip codes using the charts.js library that updates when a specific city is selected. <br>
+* **Dataset** It is powered by a dataset containing records for 365 parks. <br>
+* **User-driven interaction** Our dashboard uses a drop down menu to filter parks by city with a zoom feature that centers the map.. Markers are also color coded to display parks with and without playgrounds. <br>
+* **Views** The visualization includes a Leaflet map with a tile layer from OpenStreetMaps for location, a chart with park zip codes, a filtered list of park amenities, and an amenities gauge to show the average number of 
  amenities. <br>
 
 ### Usage
