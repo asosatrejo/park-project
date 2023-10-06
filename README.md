@@ -10,20 +10,20 @@ Our project offers three main views:
 **Park Information View:** Providing detailed information about a selected park.<br>
 **Park Amenities View:** Listing amenities available at the selected park.<br>
 
-**Usage**<br>
+### Usage
 The map view displays markers representing parks on an interactive map.
 Users can select a city from the dropdown menu to filter parks by city.
 Clicking on a park marker on the map will display detailed information about the selected park in the "Park Information View."
 The "Park Amenities View" lists the amenities available at the selected park.
 
-**Additional Libraries**<br>
+### Additional Libraries
 This project utilizes the following libraries and technologies:
 * Leaflet: Used for map visualization.
 * OpenStreetMap: Provides map tile layers.
 * Dropdown Menus: Implemented using HTML and JavaScript for city selection.
 * Flask: Used for creating the API and serving data to the frontend.
 
-**Data Source**<br>
+### Data Source
 This project includes records for 365 parks in Mecklenburg County obtained from:
 * [The City of Charlotte Open Data Portal](https://data.charlottenc.gov/)
 * [Open Mapping Mecklenburg County GIS](https://maps.mecknc.gov/openmapping/index.html)
