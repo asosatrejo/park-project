@@ -45,18 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Define an empty array to hold marker objects
     const markers = [];
 
-    // Create overlay layers for different park types
-    const parkTypeOverlay = {
-        "Community Park": L.layerGroup(),
-        "Neighborhood Park": L.layerGroup(),
-        "Regional Park": L.layerGroup(),
-        "Golf Course": L.layerGroup(),
-        "Nature Preserve": L.layerGroup(),
-    };
-    // Add the overlay layers to the map using the L.control.layers control
-    const overlayControl = L.control.layers(null, parkTypeOverlay, { collapsed: false });
-    //overlayControl.addTo(map);
-
     // Display Individual Park Info When Selected
     function updateParkInfo(park) {
         // Change Park Name When park marker is clicked
@@ -115,8 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return amenities_count;
     };
 
-    // Create Bar Chart to Display Zipcodes
-    // Function to create and display a chart
+    // Function to Create Bar Chart to Display Parks per Zipcodes
     let parkChart = null;
     function createParkChart(selectedZip) { 
         // Extract park information 
@@ -182,9 +169,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             console.log("Fetched data:", data);
 
-
-// ----------------- Main -----------------
-
             // Function to find the coordinates of a city
             function findCityCoordinates(cityName) {
                 for (const park of data) {
@@ -211,17 +195,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Amenities
                 const amenitiesCount = displayAmenities(park);
                 const amenityMeterHtml = createAmenityMeter(amenitiesCount);
+                
                 // Create a popup for each park
                 const popupContent = `<b>${park.Park_name}</b><br>${amenityMeterHtml}`;
                 marker.bindPopup(popupContent);
+                
                 // Store the park data with the marker
                 marker.park = park;
-                // Determine the overlay layer based on the park type and add the marker to it
-                if (parkTypeOverlay[park.Park_type]) {
-                    parkTypeOverlay[park.Park_type].addLayer(marker);
-                }
+                
                 // Add the marker to the map
                 marker.addTo(map);
+                
                 // Add Event Listener when marker is clicked
                 marker.addEventListener('click', event => {
                     updateParkInfo(park);
@@ -240,14 +224,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 option.textContent = city;
                 cityDropdown.appendChild(option);
             });
-            
+            // Return All Zipcodes
             const allZip = data.map(park => {
-                return park["Zip Code"]; // Return zipcodes
+                return park["Zip Code"]; 
             });
             createParkChart(allZip);
             // Event listener for dropdown change
             cityDropdown.addEventListener("change", function () {
                 const selectedCity = cityDropdown.value;
+                
                 // Update the selected city label
                 const selectedCityLabel = document.getElementById("SelectedCityLabel");
                 markers.forEach(marker => {
@@ -265,7 +250,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         marker.setOpacity(0);
                     }
                 });
+                
                 map.setView(findCityCoordinates(selectedCity), 12);
+                
                 // Filter data by park based on selected city
                 const selectedZip = data.filter(park => {
                     return park.City === selectedCity;
@@ -281,6 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
             totalAmenitiesCount += displayAmenities(park);
             });
             const averageAmenities = Math.round(totalAmenitiesCount / data.length);  // Round the average value
+            
             // Create and display the average amenities meter
             const averageAmenityMeterHtml = createAmenityMeter(averageAmenities);
             const averageAmenityMeterDiv = document.createElement('div');
