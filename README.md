@@ -47,7 +47,20 @@ This project includes records for 365 parks in Mecklenburg County obtained from:
 - The presentation maintains audience interest. 
 - Content, transitions, and conclusions flow smoothly within any time restrictions. 
 
-## Helpful Links
+# Files 
+- index.html (dashboard site)
+- Project 3 - Parks in Mecklenburg.pdf (presentation slides)
+- Resources
+- - Park_Database.csv
+  - Park_Property.csv
+  - parks.csv (combined csv file of the two above)
+  - Park-Project.ipynb
+  - Park_Amenities.csv
+  - filtered_parks.csv
+  - Updated _Park_Amenities.ipynb (used for amenities gauge)
+  - app.py (python flask API)
+
+# Helpful Links
 ### Chart.js
 - [Getting Started](https://www.chartjs.org/docs/latest/getting-started/)
 - [Updating Charts using Charts.js](https://www.chartjs.org/docs/latest/developers/updates.html)
